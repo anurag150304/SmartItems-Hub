@@ -7,9 +7,16 @@ const app = express();
 
 connectDB();
 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/", (req: Request, res: Response) => {
+    res.status(200).send("Welcome to SmartlItems Hub api");
+});
 
 // TODO: Add routes here
 app.use('/api/items', itemRoutes);
