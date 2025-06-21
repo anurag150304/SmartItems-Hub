@@ -28,7 +28,7 @@ const ItemsGrid: React.FC = () => {
     const handleEnquire = async (item: Item) => {
         setEnquiryStatus({ message: 'Sending inquiry...', error: false });
         try {
-            const res = await axios.post(`/api/items/enquire/${item._id}`);
+            const res = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/items/enquire/${item._id}`);
             setEnquiryStatus({ message: res.data.message, error: false });
         } catch {
             setEnquiryStatus({ message: 'Failed to send inquiry.', error: true });
@@ -40,7 +40,7 @@ const ItemsGrid: React.FC = () => {
     };
 
     useEffect(() => {
-        axios.get('/api/items') // Make sure the backend URL is correct
+        axios.get(`${import.meta.env.VITE_BASE_URL}/api/items`) // Make sure the backend URL is correct
             .then(res => {
                 setItems(res.data);
                 setLoading(false);

@@ -37,7 +37,7 @@ const AddItemForm: React.FC = () => {
             });
         }
         try {
-            await axios.post('/api/items', formData, {
+            await axios.post(`${import.meta.env.VITE_BASE_URL}/api/items`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             setMessage('Item successfully added!');
