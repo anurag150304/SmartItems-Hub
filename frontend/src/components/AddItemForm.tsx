@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { redirect } from 'react-router-dom';
 
 interface FormInputs {
     name: string;
@@ -43,6 +44,7 @@ const AddItemForm: React.FC = () => {
             setMessage('Item successfully added!');
             setError(null);
             reset();
+            setTimeout(() => redirect('/'), 3000);
         } catch (err) {
             console.error(err);
             setError('Failed to add item. Please try again.');
